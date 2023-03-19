@@ -36,3 +36,9 @@
       * Test
       * Teardown
 * Testing from command line with `newman`
+  * Install [NodeJS](https://nodejs.org)
+  * Install newman
+  * Run collection
+
+## Reference websites
+* [Learning Postman](https://learning.postman.com/docs/introduction/overview/)
