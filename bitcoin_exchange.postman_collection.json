@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "30dbcbab-7adf-48e7-937b-955f2a83f3cf",
+		"name": "bitcoin_exchange",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1453931"
+	},
+	"item": [
+		{
+			"name": "Get exchange rate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"",
+							"    pm.collectionVariables.set(\"bitcoinRate\", jsonData.bpi.USD.rate);",
+							"});",
+							"",
+							"pm.test(\"Response includes specified elements\", function () {",
+							"    let response = pm.response.json();",
+							"    pm.expect(response).to.have.ownProperty(\"chartName\"); ",
+							"    pm.expect(response.chartName).to.equal(\"Bitcoin\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.coindesk.com/v1/bpi/currentprice.json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"coindesk",
+						"com"
+					],
+					"path": [
+						"v1",
+						"bpi",
+						"currentprice.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show rate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://postman-echo.com/get?foo1={{bitcoinRate}}",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "foo1",
+							"value": "{{bitcoinRate}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "bitcoinRate",
+			"value": ""
+		}
+	]
+}
