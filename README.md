@@ -6,6 +6,8 @@
   * Mock server
   * Documentation
 
+## Demo API in workshop
+* https://jsonplaceholder.typicode.com/
 
 ## Topics
 * Basic of Postman
