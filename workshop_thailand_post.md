@@ -1,6 +1,7 @@
 ## Workshop with [Thailand Post API](https://track.thailandpost.co.th/developerGuide)
 * Change pattern of regular expression of date
   * DD/MM/YYYY
+  * [match function](https://www.chaijs.com/api/bdd/#method_match)
 
 
 Test case
