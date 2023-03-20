@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "6ca08d03-c9d3-46cf-8b4c-d280d3673bbf",
+		"name": "workshop-json-schema",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1453931"
+	},
+	"item": [
+		{
+			"name": "https://covid19.ddc.moph.go.th/api/Deaths/weekly-deaths-line-lists",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(5).to.eql(jsonData.length);",
+							"});",
+							"",
+							"var schema = {",
+							"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+							"  \"type\": \"array\",",
+							"  \"items\": [",
+							"    {",
+							"      \"type\": \"object\",",
+							"      \"properties\": {",
+							"        \"year\": {",
+							"          \"type\": \"integer\"",
+							"        },",
+							"        \"weeknum\": {",
+							"          \"type\": \"integer\"",
+							"        },",
+							"        \"province\": {",
+							"          \"type\": \"string\"",
+							"        },",
+							"        \"age\": {",
+							"          \"type\": \"string\"",
+							"        },",
+							"        \"age_range\": {",
+							"          \"type\": \"string\"",
+							"        },",
+							"        \"update_date\": {",
+							"          \"type\": \"string\"",
+							"        }",
+							"      },",
+							"      \"required\": [",
+							"        \"year\",",
+							"        \"weeknum\",",
+							"        \"province\",",
+							"        \"age\",",
+							"        \"age_range\",",
+							"        \"update_date\"",
+							"      ]",
+							"    }",
+							"  ]",
+							"};",
+							"",
+							"var data = pm.response.json();",
+							"pm.test('Schema is valid', function () {",
+							"    pm.expect(tv4.validate(data, schema)).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://covid19.ddc.moph.go.th/api/Deaths/weekly-deaths-line-lists",
+					"protocol": "https",
+					"host": [
+						"covid19",
+						"ddc",
+						"moph",
+						"go",
+						"th"
+					],
+					"path": [
+						"api",
+						"Deaths",
+						"weekly-deaths-line-lists"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
