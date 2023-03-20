@@ -15,7 +15,7 @@
 						"exec": [
 							"pm.test(\"Your test name\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.expect(response).to.have.ownProperty(\"token\"); ",
+							"    pm.expect(jsonData).to.have.ownProperty(\"token\"); ",
 							"    pm.expect(jsonData.token).not.null;",
 							"",
 							"    pm.collectionVariables.set(\"TOKEN\", jsonData.token);",
