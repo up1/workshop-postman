@@ -10,6 +10,7 @@
 
 ## Demo API in workshop
 * https://jsonplaceholder.typicode.com/
+  * [OpenAPI or Swagger](https://fakerestapi.azurewebsites.net/index.html)
 
 ## Topics
 * Basic of Postman
