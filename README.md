@@ -1,10 +1,26 @@
 # Postman workshop
-* API testing
-* Manage collection and flow
-* Working with [newman](https://www.npmjs.com/package/newman)
-* More
-  * Mock server
-  * Documentation
+* Design from Requirement
+* API Design (REST API)
+  * HTTP Protocol
+  * HTTP Methods
+  * API Endpoint
+  * API request body
+  * API response status and body
+  * API versioning
+* How to manage collections ?
+  * Create request
+  * Import/Export postman collection
+  * Design first
+  * Write documentation
+  * Mock server for collections
+* API testing with Postman
+  * Why and What to test ?
+  * How to test ?
+  * Working with Postbot
+  * Working with Postman interceptor
+  * Continuous testing
+    * Postman CLI 
+    * [newman](https://www.npmjs.com/package/newman) 
 * API-First Development (Design-First)
   * [Workshop and Slide ](https://github.com/up1/workshop-api-first)
 
