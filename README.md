@@ -23,6 +23,7 @@
     * [newman](https://www.npmjs.com/package/newman) 
 * API-First Development (Design-First)
   * [Workshop and Slide ](https://github.com/up1/workshop-api-first)
+* Performance testing
 
 ## Demo API in workshop
 * https://jsonplaceholder.typicode.com/
