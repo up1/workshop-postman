@@ -26,9 +26,9 @@
 * Performance testing
 
 ## Demo API in workshop
+* [HTTP Bin](https://httpbin.org/)
 * [JSON placeholder](https://jsonplaceholder.typicode.com)
   * [OpenAPI or Swagger](https://fakerestapi.azurewebsites.net/index.html)
-* [HTTP Bin](https://httpbin.org/)
 
 ## Topics
 * Basic of Postman
