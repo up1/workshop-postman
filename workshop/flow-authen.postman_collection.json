@@ -8,6 +8,109 @@
 	},
 	"item": [
 		{
+			"name": "js",
+			"item": [
+				{
+					"name": "Get user with session + authen",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(\"Called Get user with session\");",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"eval(pm.globals.get(\"getToken\"))();"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessTokenV3}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://api.escuelajs.co/api/v1/auth/profile",
+							"protocol": "https",
+							"host": [
+								"api",
+								"escuelajs",
+								"co"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var getToken = () => {",
+							"    const postRequest = {",
+							"        url: 'https://api.escuelajs.co/api/v1/auth/login',",
+							"        method: 'POST',",
+							"        header: {",
+							"            'Content-Type': 'application/json'",
+							"        },",
+							"        body: {",
+							"            mode: 'raw',",
+							"            raw: JSON.stringify({",
+							"                \"email\": \"john@mail.com\",",
+							"                \"password\": \"changeme\"",
+							"            })",
+							"        }",
+							"    }",
+							"    pm.sendRequest(postRequest, (error, response) => {",
+							"        var response = response.json();",
+							"        pm.collectionVariables.set(\"accessTokenV3\", response.access_token);",
+							"        pm.collectionVariables.set(\"refreshTokenV3\", response.refresh_token);",
+							"    });",
+							"}",
+							"",
+							"pm.globals.set(\"getToken\", getToken.toString());"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
 			"name": "Authentication",
 			"event": [
 				{
@@ -223,6 +326,26 @@
 			"response": []
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
 			"key": "accessToken",
@@ -238,6 +361,14 @@
 		},
 		{
 			"key": "refreshTokenV2",
+			"value": ""
+		},
+		{
+			"key": "accessTokenV3",
+			"value": ""
+		},
+		{
+			"key": "refreshTokenV3",
 			"value": ""
 		}
 	]
