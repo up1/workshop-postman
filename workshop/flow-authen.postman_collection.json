@@ -14,8 +14,9 @@
 					"listen": "test",
 					"script": {
 						"exec": [
+							"console.log(\"Called Authentication\");",
 							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
+							"    pm.response.to.have.status(201);",
 							"});",
 							"",
 							"var jsonData = pm.response.json();",
@@ -23,7 +24,9 @@
 							"var refreshToken = jsonData.refresh_token;",
 							"",
 							"pm.collectionVariables.set(\"accessToken\", accessToken);",
-							"pm.collectionVariables.set(\"refreshToken\", refreshToken);"
+							"pm.collectionVariables.set(\"refreshToken\", refreshToken);",
+							"",
+							"postman.setNextRequest(\"Get a new Access Token with a Refresh Token\")"
 						],
 						"type": "text/javascript"
 					}
@@ -61,6 +64,17 @@
 		},
 		{
 			"name": "Get user with session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(\"Called Get user with session\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -93,6 +107,17 @@
 		},
 		{
 			"name": "Get a new Access Token with a Refresh Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(\"Called Get a new Access Token with a Refresh Token\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
