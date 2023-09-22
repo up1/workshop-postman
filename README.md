@@ -30,6 +30,7 @@
 * [Postman echo](https://postman-echo.com)
 * [JSON placeholder](https://jsonplaceholder.typicode.com)
   * [OpenAPI or Swagger](https://fakerestapi.azurewebsites.net/index.html)
+* [Platzi Fake Store API](https://fakeapi.platzi.com/en/rest/introduction)
 
 ## Topics
 * Basic of Postman
