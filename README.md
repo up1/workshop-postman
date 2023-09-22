@@ -65,5 +65,6 @@
 
 ## Reference websites
 * [Learning Postman](https://learning.postman.com/docs/introduction/overview/)
+* [Postman JavaScript reference](https://learning.postman.com/docs/writing-scripts/script-references/postman-sandbox-api-reference/)
 * [Postman team collections](https://www.postman.com/postman/workspace/postman-team-collections/overview)
 * [Book:: Postman in the right way](https://docs.google.com/document/d/1TLiRHqOqxx4MOCJRxxKLZbseelg0EncwX_HZj3MzyJo/edit?usp=sharing)
