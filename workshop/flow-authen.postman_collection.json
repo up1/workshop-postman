@@ -106,6 +106,80 @@
 			"response": []
 		},
 		{
+			"name": "Get user with session + authen",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(\"Called Get user with session\");",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const postRequest = {",
+							"  url: 'https://api.escuelajs.co/api/v1/auth/login',",
+							"  method: 'POST',",
+							"  header: {",
+							"    'Content-Type': 'application/json'",
+							"  },",
+							"  body: {",
+							"    mode: 'raw',",
+							"    raw: JSON.stringify({",
+							"        \"email\": \"john@mail.com\",",
+							"        \"password\": \"changeme\"",
+							"    })",
+							"  }",
+							"};",
+							"pm.sendRequest(postRequest, (error, response) => {",
+							"  var response = response.json();",
+							"  pm.collectionVariables.set(\"accessTokenV2\", response.access_token);",
+							"  pm.collectionVariables.set(\"refreshTokenV2\", response.refresh_token);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenV2}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.escuelajs.co/api/v1/auth/profile",
+					"protocol": "https",
+					"host": [
+						"api",
+						"escuelajs",
+						"co"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get a new Access Token with a Refresh Token",
 			"event": [
 				{
@@ -156,6 +230,14 @@
 		},
 		{
 			"key": "refreshToken",
+			"value": ""
+		},
+		{
+			"key": "accessTokenV2",
+			"value": ""
+		},
+		{
+			"key": "refreshTokenV2",
 			"value": ""
 		}
 	]
