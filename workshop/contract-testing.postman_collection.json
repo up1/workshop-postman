@@ -1,0 +1,444 @@
+{
+	"info": {
+		"_postman_id": "35e4f99c-3faf-4cc2-9cb2-8afe4d77e5bc",
+		"name": "Demo contract testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1453931",
+		"_collection_link": "https://www.postman.com/red-firefly-245852/workspace/testing-day/collection/1453931-35e4f99c-3faf-4cc2-9cb2-8afe4d77e5bc?action=share&source=collection_link&creator=1453931"
+	},
+	"item": [
+		{
+			"name": "Provider",
+			"item": [
+				{
+					"name": "api1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is a json object\", function () {",
+									"    pm.expect(pm.response.json()).to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"Schema is valid\", function () {",
+									"  var schema = {",
+									"    type: \"object\",",
+									"    properties: {",
+									"      args: {",
+									"        type: \"object\",",
+									"        properties: {",
+									"          key1: { type: \"string\" },",
+									"          key2: { type: \"string\" }",
+									"        },",
+									"        required: [\"key1\", \"key2\"]",
+									"      },",
+									"      headers: {",
+									"        type: \"object\",",
+									"        properties: {",
+									"          \"x-forwarded-proto\": { type: \"string\" },",
+									"          \"x-forwarded-port\": { type: \"string\" },",
+									"          host: { type: \"string\" },",
+									"          \"x-amzn-trace-id\": { type: \"string\" },",
+									"          \"user-agent\": { type: \"string\" },",
+									"          accept: { type: \"string\" },",
+									"          \"postman-token\": { type: \"string\" },",
+									"          \"accept-encoding\": { type: \"string\" },",
+									"          cookie: { type: \"string\" }",
+									"        },",
+									"        required: [\"x-forwarded-proto\", \"x-forwarded-port\", \"host\", \"x-amzn-trace-id\", \"user-agent\", \"accept\", \"postman-token\", \"accept-encoding\", \"cookie\"]",
+									"      },",
+									"      url: { type: \"string\" }",
+									"    },",
+									"    required: [\"args\", \"headers\", \"url\"]",
+									"  };",
+									"",
+									"  var response = pm.response.json();",
+									"  pm.expect(tv4.validate(response, schema)).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/get?key1=value1&key2=value2",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"get"
+							],
+							"query": [
+								{
+									"key": "key1",
+									"value": "value1"
+								},
+								{
+									"key": "key2",
+									"value": "value2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Schema is valid\", function () {",
+									"  var schema = {",
+									"    type: \"object\",",
+									"    properties: {",
+									"      args: {",
+									"        type: \"object\"",
+									"      },",
+									"      data: {",
+									"        type: \"object\"",
+									"      },",
+									"      files: {",
+									"        type: \"object\"",
+									"      },",
+									"      form: {",
+									"        type: \"object\",",
+									"        properties: {",
+									"          key1: {",
+									"            type: \"string\"",
+									"          },",
+									"          key2: {",
+									"            type: \"string\"",
+									"          }",
+									"        },",
+									"        required: [\"key1\", \"key2\"]",
+									"      },",
+									"      headers: {",
+									"        type: \"object\",",
+									"        properties: {",
+									"          \"x-forwarded-proto\": {",
+									"            type: \"string\"",
+									"          },",
+									"          \"x-forwarded-port\": {",
+									"            type: \"string\"",
+									"          },",
+									"          host: {",
+									"            type: \"string\"",
+									"          },",
+									"          \"x-amzn-trace-id\": {",
+									"            type: \"string\"",
+									"          },",
+									"          \"content-length\": {",
+									"            type: \"string\"",
+									"          },",
+									"          \"user-agent\": {",
+									"            type: \"string\"",
+									"          },",
+									"          accept: {",
+									"            type: \"string\"",
+									"          },",
+									"          \"postman-token\": {",
+									"            type: \"string\"",
+									"          },",
+									"          \"accept-encoding\": {",
+									"            type: \"string\"",
+									"          },",
+									"          \"content-type\": {",
+									"            type: \"string\"",
+									"          },",
+									"          cookie: {",
+									"            type: \"string\"",
+									"          }",
+									"        },",
+									"        required: [",
+									"          \"x-forwarded-proto\",",
+									"          \"x-forwarded-port\",",
+									"          \"host\",",
+									"          \"x-amzn-trace-id\",",
+									"          \"content-length\",",
+									"          \"user-agent\",",
+									"          \"accept\",",
+									"          \"postman-token\",",
+									"          \"accept-encoding\",",
+									"          \"content-type\",",
+									"          \"cookie\"",
+									"        ]",
+									"      },",
+									"      json: {",
+									"        type: [\"object\", \"null\"]",
+									"      },",
+									"      url: {",
+									"        type: \"string\"",
+									"      }",
+									"    },",
+									"    required: [",
+									"      \"args\",",
+									"      \"data\",",
+									"      \"files\",",
+									"      \"form\",",
+									"      \"headers\",",
+									"      \"json\",",
+									"      \"url\"",
+									"    ]",
+									"  };",
+									"",
+									"  var response = pm.response.json();",
+									"  pm.expect(tv4.validate(response, schema)).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "key1",
+									"value": "value1",
+									"type": "text"
+								},
+								{
+									"key": "key2",
+									"value": "value2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://postman-echo.com/post",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"post"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ConsumerA",
+			"item": [
+				{
+					"name": "Call API1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type should be JSON\", function () {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');",
+									"});",
+									"",
+									"const json = pm.response.json();",
+									"pm.test(\"`args` should contain the correct query params\", function () {",
+									"    pm.expect(json.args).to.be.an('object');",
+									"    pm.expect(json.args.from).to.eql('consumerA');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{TARGET_URL}}/get?from=consumerA",
+							"host": [
+								"{{TARGET_URL}}"
+							],
+							"path": [
+								"get"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "consumerA"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Call API2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response content type is JSON\", function () {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+									"});",
+									"",
+									"",
+									"// Test for the existence of properties in the response object",
+									"pm.test(\"Response has the required properties\", function () {",
+									"    var jsonData = pm.response.json();",
+									"",
+									"    pm.expect(jsonData).to.have.property('args');",
+									"    pm.expect(jsonData).to.have.property('data');",
+									"    pm.expect(jsonData).to.have.property('files');",
+									"    pm.expect(jsonData).to.have.property('form');",
+									"    pm.expect(jsonData).to.have.property('headers');",
+									"    pm.expect(jsonData).to.have.property('json');",
+									"    pm.expect(jsonData).to.have.property('url');",
+									"});",
+									"",
+									"// Test for the form object to have the required properties",
+									"pm.test(\"Form object has the required properties\", function () {",
+									"    var jsonData = pm.response.json();",
+									"",
+									"    pm.expect(jsonData.form).to.have.property('from');",
+									"    pm.expect(jsonData.form.from).to.have.eq('consumerA');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "from",
+									"value": "consumerA",
+									"type": "text"
+								},
+								{
+									"key": "key2",
+									"value": "value2",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://postman-echo.com/post",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"post"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ConsumerB",
+			"item": [
+				{
+					"name": "Call API1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type should be JSON\", function () {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');",
+									"});",
+									"",
+									"const json = pm.response.json();",
+									"pm.test(\"`args` should contain the correct query params\", function () {",
+									"    pm.expect(json.args).to.be.an('object');",
+									"    pm.expect(json.args.from).to.eql('consumerB');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{TARGET_URL}}/get?from=consumerB",
+							"host": [
+								"{{TARGET_URL}}"
+							],
+							"path": [
+								"get"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "consumerB"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "TARGET_URL",
+			"value": "https://postman-echo.com",
+			"type": "string"
+		}
+	]
+}
