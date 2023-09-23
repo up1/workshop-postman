@@ -1,11 +1,11 @@
 {
 	"info": {
-		"_postman_id": "86adddb8-01a2-4374-ba61-2138e3e5e1c2",
+		"_postman_id": "1d66a51b-ce7e-46ff-93e2-79f3423a0fc4",
 		"name": "Hello",
 		"description": "Demo postman",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "1453931",
-		"_collection_link": "https://www.postman.com/red-firefly-245852/workspace/postman-workshop/collection/1453931-86adddb8-01a2-4374-ba61-2138e3e5e1c2?action=share&source=collection_link&creator=1453931"
+		"_collection_link": "https://www.postman.com/red-firefly-245852/workspace/postman-workshop/collection/1453931-1d66a51b-ce7e-46ff-93e2-79f3423a0fc4?action=share&source=collection_link&creator=1453931"
 	},
 	"item": [
 		{
@@ -18,18 +18,6 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Content-Type is present\", function () {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									"",
-									"pm.test(\"Response time is less than 200ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);",
-									"});",
-									"",
 									"pm.test(\"Response body has the required properties\", function () {",
 									"    var responseJSON = pm.response.json();",
 									"",
@@ -113,18 +101,6 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 404\", function () {",
-									"    pm.response.to.have.status(404);",
-									"});",
-									"",
-									"pm.test(\"Content-Type is present\", function () {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									"",
-									"pm.test(\"Response time is less than 200ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);",
-									"});",
-									"",
 									"pm.test(\"Response body has the required properties\", function () {",
 									"    var responseJSON = pm.response.json();",
 									"    pm.expect(responseJSON).to.have.property('message');",
@@ -213,18 +189,6 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Content-Type is present\", function () {",
-							"    pm.response.to.have.header(\"Content-Type\");",
-							"});",
-							"",
-							"pm.test(\"Response time is less than 200ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(200);",
-							"});",
-							"",
 							"var schema = {",
 							" \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
 							"  \"type\": \"array\",",
@@ -335,12 +299,43 @@
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
 					"body": "{\n    \"message\": \"User not found\"\n}"
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"pm.test(\"Content-Type is present\", function () {",
+					"    pm.response.to.have.header(\"Content-Type\");",
+					"});",
+					"",
+					"pm.test(\"Response time is less than 200ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(200);",
+					"});",
+					""
+				]
+			}
 		}
 	]
 }
