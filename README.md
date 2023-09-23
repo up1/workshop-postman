@@ -24,6 +24,9 @@
 * API-First Development (Design-First)
   * [Workshop and Slide ](https://github.com/up1/workshop-api-first)
 * Performance testing
+  * [K6 + Prometheus + Grafana](https://github.com/up1/demo-k6-prometheus-grafana)
+  * [Postman to K6](https://github.com/apideck-libraries/postman-to-k6)
+  * [Postman to JMeter](https://github.com/kevinswiber/postmanctl)
 
 ## Demo API in workshop
 * [HTTP Bin](https://httpbin.org/)
