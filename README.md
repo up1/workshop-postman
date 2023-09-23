@@ -31,6 +31,7 @@
 * [JSON placeholder](https://jsonplaceholder.typicode.com)
   * [OpenAPI or Swagger](https://fakerestapi.azurewebsites.net/index.html)
 * [Platzi Fake Store API](https://fakeapi.platzi.com/en/rest/introduction)
+* [API testing project](https://github.com/up1/demo-api-testing-postman)
 
 ## Topics
 * Basic of Postman
