@@ -8,6 +8,300 @@
 	},
 	"item": [
 		{
+			"name": "Flow01",
+			"item": [
+				{
+					"name": "Get user with session",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const postRequest = {",
+									"        url: 'https://api.escuelajs.co/api/v1/auth/login',",
+									"        method: 'POST',",
+									"        header: {",
+									"            'Content-Type': 'application/json'",
+									"        },",
+									"        body: {",
+									"            mode: 'raw',",
+									"            raw: JSON.stringify({",
+									"                \"email\": \"john@mail.com\",",
+									"                \"password\": \"changeme\"",
+									"            })",
+									"        }",
+									"    }",
+									"    pm.sendRequest(postRequest, (error, response) => {",
+									"        var response = response.json();",
+									"        pm.collectionVariables.set(\"accessTokenV4\", response.access_token);",
+									"        pm.collectionVariables.set(\"refreshTokenV3\", response.refresh_token);",
+									"    });"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(\"CAll GetItemsbyBarcode\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessTokenV4}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.escuelajs.co/api/v1/auth/profile",
+							"protocol": "https",
+							"host": [
+								"api",
+								"escuelajs",
+								"co"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Flow02",
+			"item": [
+				{
+					"name": "Get Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"TOKEN_B\", jsonData.access_token);",
+									"",
+									"postman.setNextRequest(\"Get user with session\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token RcU+LwT6BmMXS@RYCOHVF+K4NZHiJ#RCP&A2D.H7JYDUGnKVSgGMN~U;M%IIImJxH.IfPJEFLqHXBNLAN6IoG9KXA_F@TbGJJdFF",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"john@mail.com\",\n  \"password\": \"changeme\"\n}"
+						},
+						"url": {
+							"raw": "https://api.escuelajs.co/api/v1/auth/login",
+							"protocol": "https",
+							"host": [
+								"api",
+								"escuelajs",
+								"co"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token RcU+LwT6BmMXS@RYCOHVF+K4NZHiJ#RCP&A2D.H7JYDUGnKVSgGMN~U;M%IIImJxH.IfPJEFLqHXBNLAN6IoG9KXA_F@TbGJJdFF",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://trackapi.thailandpost.co.th/post/api/v1/authenticate/token",
+									"protocol": "https",
+									"host": [
+										"trackapi",
+										"thailandpost",
+										"co",
+										"th"
+									],
+									"path": [
+										"post",
+										"api",
+										"v1",
+										"authenticate",
+										"token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Authorization",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmUtYXBpIiwiYXVkIjoic2VjdXJlLWFwcCIsInN1YiI6IkF1dGhvcml6YXRpb24iLCJleHAiOjE2OTgwMzc2NDQsInJvbCI6WyJST0xFX1VTRVIiXSwiZCpzaWciOnsicCI6InpXNzB4IiwicyI6bnVsbCwidSI6ImNhNGRlOTU4YjRjYWM2MDM0M2NhODU0ZTYxMWFkNjQ1IiwiZiI6InhzeiM5In19.whYebbLfElAXPy8Sd_3g0EQNkA7Lp_OsCFObyCN1bzXlYqS-ghm0JadGSWu9GZ_H8sMC_9fTitF8oKzCIeEbpQ"
+								},
+								{
+									"key": "Prefix",
+									"value": "Token"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=ISO-8859-1"
+								},
+								{
+									"key": "Content-Length",
+									"value": "413"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 23 Sep 2023 05:07:24 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"expire\": \"2023-10-23 12:07:24+07:00\",\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmUtYXBpIiwiYXVkIjoic2VjdXJlLWFwcCIsInN1YiI6IkF1dGhvcml6YXRpb24iLCJleHAiOjE2OTgwMzc2NDQsInJvbCI6WyJST0xFX1VTRVIiXSwiZCpzaWciOnsicCI6InpXNzB4IiwicyI6bnVsbCwidSI6ImNhNGRlOTU4YjRjYWM2MDM0M2NhODU0ZTYxMWFkNjQ1IiwiZiI6InhzeiM5In19.whYebbLfElAXPy8Sd_3g0EQNkA7Lp_OsCFObyCN1bzXlYqS-ghm0JadGSWu9GZ_H8sMC_9fTitF8oKzCIeEbpQ\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get a new Access Token with a Refresh Token",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(\"CAll GetItemsbyBarcode\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{TOKEN_B}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.escuelajs.co/api/v1/auth/refresh-token",
+							"protocol": "https",
+							"host": [
+								"api",
+								"escuelajs",
+								"co"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Get Token",
 			"event": [
 				{
@@ -153,69 +447,23 @@
 					"body": "{\n    \"expire\": \"2023-10-23 12:07:24+07:00\",\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmUtYXBpIiwiYXVkIjoic2VjdXJlLWFwcCIsInN1YiI6IkF1dGhvcml6YXRpb24iLCJleHAiOjE2OTgwMzc2NDQsInJvbCI6WyJST0xFX1VTRVIiXSwiZCpzaWciOnsicCI6InpXNzB4IiwicyI6bnVsbCwidSI6ImNhNGRlOTU4YjRjYWM2MDM0M2NhODU0ZTYxMWFkNjQ1IiwiZiI6InhzeiM5In19.whYebbLfElAXPy8Sd_3g0EQNkA7Lp_OsCFObyCN1bzXlYqS-ghm0JadGSWu9GZ_H8sMC_9fTitF8oKzCIeEbpQ\"\n}"
 				}
 			]
-		},
-		{
-			"name": "Get user with session",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"console.log(\"CAll GetItemsbyBarcode\");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Token {{TOKEN_B}}",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "https://api.escuelajs.co/api/v1/auth/profile",
-					"protocol": "https",
-					"host": [
-						"api",
-						"escuelajs",
-						"co"
-					],
-					"path": [
-						"api",
-						"v1",
-						"auth",
-						"profile"
-					]
-				}
-			},
-			"response": []
 		}
 	],
 	"variable": [
 		{
 			"key": "TOKEN_B",
+			"value": ""
+		},
+		{
+			"key": "accessTokenV3",
+			"value": ""
+		},
+		{
+			"key": "refreshTokenV3",
+			"value": ""
+		},
+		{
+			"key": "accessTokenV4",
 			"value": ""
 		}
 	]
