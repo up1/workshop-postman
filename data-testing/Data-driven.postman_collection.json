@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "b34e7630-580e-4d73-9e22-17756221bf2a",
+		"name": "Data-driven",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1453931",
+		"_collection_link": "https://www.postman.com/red-firefly-245852/workspace/postman-workshop/collection/1453931-b34e7630-580e-4d73-9e22-17756221bf2a?action=share&source=collection_link&creator=1453931"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://postman-echo.com/get?userid={{userid}}&username={{username}}",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "{{userid}}"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
