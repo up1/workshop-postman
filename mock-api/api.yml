@@ -1,0 +1,11 @@
+-  request:
+      url: /api/v1/auth/profile
+      method: GET
+      headers:
+         content-type: application/json
+         Authorization: Bearer 1234
+   response:
+    - status: 200
+      headers:
+         content-type: application/json
+      file: response.json

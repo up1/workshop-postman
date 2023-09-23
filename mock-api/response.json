@@ -1,0 +1,10 @@
+{
+    "id": 1,
+    "email": "somkiat@mail.com",
+    "password": "changeme",
+    "name": "Jhon",
+    "role": "customer",
+    "avatar": "https://picsum.photos/640/640?r=9159",
+    "creationAt": "2023-09-23T07:00:22.000Z",
+    "updatedAt": "2023-09-23T07:00:22.000Z"
+}
